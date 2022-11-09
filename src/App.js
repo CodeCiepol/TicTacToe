@@ -1,24 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import FieldsGrid from "./components/fields/fieldsGrid";
+import "./App.css";
+import { useEffect, useState, useCallback } from "react";
+import Card from "./components/UI/Card";
+import classes from "./components/fields/fieldsGrid.module.css";
 
 function App() {
+  const [fields, setFields] = useState([]);
+  const [Winner, setWinner] = useState("");
+
+  const winnablePositions=[[0,1,2],[0,3,6],[0,4,8],[1,4,7],[2,5,8],[3,4,5],[6,7,8],[6,4,2]]
+
+  const addFieldsHandler = useCallback(() => {
+    const fieldsNumber = 9;
+    let fieldsArray = [];
+    for (let i = 0; i < fieldsNumber; i++) {
+      fieldsArray.push({ id: i, value: 0 });
+    }
+    setFields(fieldsArray);
+  }, []);
+
+  useEffect(() => {
+    addFieldsHandler();
+  }, [addFieldsHandler]);
+
+  const ClickerHandler = (id) => {
+    let fieldsArray = [...fields];
+    fieldsArray[id].value<2 ? fieldsArray[id].value += 1 : fieldsArray[id].value =0;
+    setFields(fieldsArray);
+
+    let fieldsP1 = fieldsArray.filter((obj => obj.value === 1));
+    let idFieldsP1 = fieldsP1.map((obj)=>{
+      return obj.id
+    })
+
+    let fieldsP2 = fieldsArray.filter((obj => obj.value === 2));
+    let idFieldsP2 = fieldsP2.map((obj)=>{
+      return obj.id
+    })
+  
+    // console.log(winnablePositions[1][1])
+    for(let i=0;i<8;i++){
+      for(let j=0;j<3;j++){
+        if(!idFieldsP1.includes(winnablePositions[i][j]))
+        break;
+        if (j===2){
+          console.log("player 1 WINS")
+          setWinner('1')
+        }
+        // console.log(winnablePositions[i][j])
+      }
+    }
+    for(let i=0;i<7;i++){
+      for(let j=0;j<3;j++){
+        if(!idFieldsP2.includes(winnablePositions[i][j]))
+        break;
+        if (j===2){
+          console.log("player 2 WINS")
+          setWinner('2')
+        }
+        // console.log(winnablePositions[i][j])
+      }
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <FieldsGrid fields={fields} ClickerHandler={ClickerHandler}></FieldsGrid>
+      <div className={classes.grid}>
+      {Winner ? `Wygrywa ${Winner} gracz!`:""}
+      </div>
+    </>
   );
 }
 
