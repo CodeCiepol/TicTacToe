@@ -1,17 +1,25 @@
 .grid {
     display: grid;
-    gap: 1px;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 1rem;
-    margin: 8rem auto;
-    width: 50rem;
+    /* display: inline-grid; */
+
+    /* column-gap: 1px; */
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 20fr); 
+    grid-template-rows: repeat(3, 20fr); 
+    padding: 0.5rem;
+    margin: 3rem auto; 
+    width: 25rem;
+    height: 25rem;
+    background-color: rgb(77, 22, 0);
+    /* align-items: stretch; */
   }
+  
   .cell {
     flex: 0 0 32%;                       /* don't grow, don't shrink, width */
-    height: 50px;
-    width: 50px;
-    margin-bottom: 5px;
-    background-color: #999;
+    /* height: 50px; */
+    /* width: 50px; */
+    /* margin-bottom: 5px; */
+    background-color: rgb(255, 0, 0);
     padding: 1rem;
   }
   .card{

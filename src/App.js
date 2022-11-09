@@ -66,7 +66,7 @@ function App() {
   return (
     <>
       <FieldsGrid fields={fields} ClickerHandler={ClickerHandler}></FieldsGrid>
-      <div className={classes.grid}>
+      <div className='Winner'>
       {Winner ? `Wygrywa ${Winner} gracz!`:""}
       </div>
     </>

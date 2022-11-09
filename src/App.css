@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+.Winner {
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  background-color: aliceblue;
+  width: 20rem;
+  margin: auto;
+}
