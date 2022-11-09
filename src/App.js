@@ -1,8 +1,6 @@
 import FieldsGrid from "./components/fields/fieldsGrid";
 import "./App.css";
 import { useEffect, useState, useCallback } from "react";
-import Card from "./components/UI/Card";
-import classes from "./components/fields/fieldsGrid.module.css";
 
 function App() {
   const [fields, setFields] = useState([]);
@@ -38,7 +36,7 @@ function App() {
       return obj.id
     })
   
-    // console.log(winnablePositions[1][1])
+
     for(let i=0;i<8;i++){
       for(let j=0;j<3;j++){
         if(!idFieldsP1.includes(winnablePositions[i][j]))
@@ -47,7 +45,6 @@ function App() {
           console.log("player 1 WINS")
           setWinner('1')
         }
-        // console.log(winnablePositions[i][j])
       }
     }
     for(let i=0;i<7;i++){
@@ -58,7 +55,6 @@ function App() {
           console.log("player 2 WINS")
           setWinner('2')
         }
-        // console.log(winnablePositions[i][j])
       }
     }
   };
