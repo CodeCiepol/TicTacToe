@@ -2,6 +2,7 @@ import FieldsGrid from "./components/fields/fieldsGrid";
 import "./App.css";
 import { useEffect, useState, useCallback } from "react";
 import Card from "./components/UI/Card";
+import WinnerWindow from "./components/UI/WinnerWindow";
 
 function App() {
   const [fields, setFields] = useState([]);
@@ -37,7 +38,11 @@ function App() {
   //     return !curstate;
   //   });
   // };
-
+  const newGameHandler = () => {
+    setWinner("");
+    addFieldsHandler();
+    setPlayer1(true);
+  };
   const ClickerHandler = (id) => {
     if (!fields[id].set) {
       let fieldsArray = [...fields];
@@ -84,7 +89,8 @@ function App() {
 
   return (
     <>
-      <Card className="player">{player1? "Gracz 1":"Gracz 2"}</Card>
+      {Winner && <WinnerWindow winner={Winner} newGame={newGameHandler} />}
+      <Card className="player">{player1 ? "Player 1" : "Player 2"}</Card>
       <FieldsGrid fields={fields} ClickerHandler={ClickerHandler}></FieldsGrid>
       <div className="Winner">{Winner ? `Wygrywa ${Winner} gracz!` : ""}</div>
     </>
