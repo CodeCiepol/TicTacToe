@@ -1,5 +1,4 @@
-import Card from "../UI/Card";
-import classes from "./fieldsGrid.module.css";
+
 
 import XIcon from "./xIcon"
 import OIcon from "./oIcon";
@@ -7,12 +6,9 @@ import OIcon from "./oIcon";
 import  "./fieldItem.css"
 const FieldItem = (props) => {
   return (
-      <div className={props.value===1? "field0" : "field2"} onClick={props.ClickerHandler.bind(null,props.id)}>
-    {/* <Card className={classes.cell}> */}
-    {props.value===1 && <OIcon/>}
-    {props.value===2 && <XIcon/>}
-    {/* {props.value} */}
-    {/* </Card> */}
+      <div className="field0" onClick={props.ClickerHandler.bind(null,props.id)}>
+    {props.value===1 && <OIcon x="80" y="80"/>}
+    {props.value===2 && <XIcon x="120" y="120"/>}
       </div>
   );
 };

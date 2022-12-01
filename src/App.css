@@ -36,15 +36,21 @@
     transform: rotate(360deg);
   }
 }
-.player{
-  font-size: 150%;
-  font-weight: bold;
-  text-align: center;
+.currentPlayer{
+  display: flex;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
   background-color: aliceblue;
   padding: 0.5rem;
   width: 25rem;
-  margin: 3rem auto 1rem; /*top margin left&right margin botton margin */
+  margin: 3rem auto 1rem; 
+  justify-content: center
+  /* top margin left&right margin botton margin */
+}
+.currentPlayer h1{
+  margin: 0 2rem 0; 
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
 }
 .Winner {
   text-align: center;
@@ -65,6 +71,9 @@
 }
 
 .modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: 250%;
   font-weight: bold;
   position: fixed;
@@ -80,6 +89,10 @@
   animation: winner-appear 1s ease-out forwards;
 }
 
+.modal div {
+  margin-top: 2rem;
+}
+
 @keyframes winner-appear {
   from {
     opacity: 0;
@@ -92,7 +105,7 @@
   }
 }
  .button {
-  margin-top: 3rem;
+  align-self: start;
   border-radius: 12px;
   font: inherit;
   cursor: pointer;
@@ -100,4 +113,19 @@
   border: 3px solid #100501;
   color: white;
   padding: 0.25rem 2rem;
+  margin:  2rem auto;
  }
+
+ .figure {
+  margin: 0;
+  position: absolute;              
+  top: 50%;                       
+  left: 50%;
+  transform: translate(-50%, -50%) 
+ }
+.square {
+  height: auto;
+  width: 2rem;
+  position: relative;              
+  
+}

@@ -1,8 +1,5 @@
 .grid {
     display: grid;
-    /* display: inline-grid; */
-
-    /* column-gap: 1px; */
     gap: 0.5rem;
     grid-template-columns: repeat(3, 20fr); 
     grid-template-rows: repeat(3, 20fr); 
@@ -11,22 +8,13 @@
     width: 25rem;
     height: 25rem;
     background-color: rgb(77, 22, 0);
-    /* align-items: stretch; */
   }
   
   .cell {
     flex: 0 0 32%;                       /* don't grow, don't shrink, width */
-    /* height: 50px; */
-    /* width: 50px; */
-    /* margin-bottom: 5px; */
     background-color: rgb(255, 0, 0);
-    /* padding: 1rem; */
   }
   .card{
     border-radius: 12px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
 }
-
-  /* .cell:nth-child(3n) {
-    background-color: #F00;
-  } */

@@ -1,15 +1,15 @@
 import FieldsGrid from "./components/fields/fieldsGrid";
 import "./App.css";
 import { useEffect, useState, useCallback } from "react";
-import Card from "./components/UI/Card";
 import WinnerWindow from "./components/UI/WinnerWindow";
+import CurrentPlayer from "./components/currentPlayer";
 
 function App() {
   const [fields, setFields] = useState([]);
   const [Winner, setWinner] = useState("");
   const [player1, setPlayer1] = useState(true);
 
-  const winnablePositions = [
+  const winningPositions = [
     [0, 1, 2],
     [0, 3, 6],
     [0, 4, 8],
@@ -33,22 +33,15 @@ function App() {
     addFieldsHandler();
   }, [addFieldsHandler]);
 
-  // const playerHandler = () => {
-  //   setPlayer1((curstate) => {
-  //     return !curstate;
-  //   });
-  // };
   const newGameHandler = () => {
     setWinner("");
     addFieldsHandler();
     setPlayer1(true);
   };
+  
   const ClickerHandler = (id) => {
     if (!fields[id].set) {
       let fieldsArray = [...fields];
-      // fieldsArray[id].value < 2
-      //   ? (fieldsArray[id].value += 1)
-      //   : (fieldsArray[id].value = 0);
       player1 ? (fieldsArray[id].value = 1) : (fieldsArray[id].value = 2);
       fieldsArray[id].set = true;
       setPlayer1((curstate) => {
@@ -68,7 +61,7 @@ function App() {
 
       for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 3; j++) {
-          if (!idFieldsP1.includes(winnablePositions[i][j])) break;
+          if (!idFieldsP1.includes(winningPositions[i][j])) break;
           if (j === 2) {
             console.log("player 1 WINS");
             setWinner("1");
@@ -77,22 +70,26 @@ function App() {
       }
       for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 3; j++) {
-          if (!idFieldsP2.includes(winnablePositions[i][j])) break;
+          if (!idFieldsP2.includes(winningPositions[i][j])) break;
           if (j === 2) {
             console.log("player 2 WINS");
             setWinner("2");
           }
         }
       }
-    }
+      if(!Winner){
+        for (let i = 0; i < 9; i++) {
+          if(!fieldsArray[i].set) break; 
+          if(i===8) setWinner("3")}
+        }
+      } 
   };
 
   return (
     <>
-      {Winner && <WinnerWindow winner={Winner} newGame={newGameHandler} />}
-      <Card className="player">{player1 ? "Player 1" : "Player 2"}</Card>
+      {Winner ? <WinnerWindow winner={Winner} newGame={newGameHandler} /> : <></>}
+      <CurrentPlayer player1={player1}/>
       <FieldsGrid fields={fields} ClickerHandler={ClickerHandler}></FieldsGrid>
-      <div className="Winner">{Winner ? `Wygrywa ${Winner} gracz!` : ""}</div>
     </>
   );
 }

@@ -8,7 +8,7 @@ const Backdrop = (props) => {
 const Overlay = (props) =>{
     return(
         <Card className="modal">
-            <div>Player {props.winner} wins!</div>
+            <div>{props.winner==="3"? "Draw!": `Player ${props.winner} wins!`}</div>
             <button className="button" onClick={props.onReset}>New Game</button>
         </Card>
     )
